@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"flag"
 	"log"
+	"math"
 	"net/http"
 	"net/url"
 	"os"
@@ -84,11 +85,7 @@ func (re *RateEstimator) Update() {
 	}
 	re.α += float64(n)
 	re.β += float64(n) * Δhat
-	/*
-		if re.topic == "abtest" {
-			log.Println(re.topic, "  α:", re.α, "  β:", re.β, "  mean:", re.α/re.β, "  variance:", re.α/math.Pow(re.β, 2))
-		}
-	*/
+	log.Println(re.topic, "  α:", re.α, "  β:", re.β, "  mean:", re.α/re.β, "  variance:", re.α/math.Pow(re.β, 2))
 }
 
 func main() {
